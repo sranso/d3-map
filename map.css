@@ -45,4 +45,6 @@ text {
   font-family: "Overlock", cursive;
   font-size: 2em;
 }
+#sphere {
+  fill: blue;
 }
