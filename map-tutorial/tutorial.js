@@ -53,7 +53,13 @@ d3.json("uk.json", function(error, uk) {
   svg.append("path")
       .datum(places)
       .attr("d", path)
-      .attr("class", "place");
+      .attr("class", "place")
+      .on("mouseover", function(d) {
+        svg.append("text")
+          .attr("class", "place-label")
+          .attr("transform", "translate(10)")
+          .attr("x", 10);
+      });
 
   // add city names
   // change position of city names
@@ -68,8 +74,6 @@ d3.json("uk.json", function(error, uk) {
       .text(function(d) { return d.properties.name; });
 });
 
-$("svg .place-label").hover(function() {
-  // debugger
-    alert("hover");
-    $(this).attr("fill", "blue");
-});
+function mouseover(d, i) {
+  d3.select(rect)
+}
