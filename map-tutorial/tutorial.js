@@ -29,6 +29,7 @@ d3.json("uk.json", function(error, uk) {
       .attr("class", function(d) { return "subunit " + d.id; })
       .attr("d", path);
 
+  // make borders
   svg.append("path")
       .datum(topojson.mesh(uk, uk.objects.subunits, function(a, b) { return a !== b && a.id !== "IRL"; }))
       .attr("d", path)
@@ -65,4 +66,10 @@ d3.json("uk.json", function(error, uk) {
       .attr("dy", ".35em")
       .style("text-anchor", function(d) { return d.geometry.coordinates[0] > -1 ? "start" : "end"; })
       .text(function(d) { return d.properties.name; });
+});
+
+$("svg .place-label").hover(function() {
+  // debugger
+    alert("hover");
+    $(this).attr("fill", "blue");
 });
