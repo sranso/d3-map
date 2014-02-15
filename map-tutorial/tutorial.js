@@ -2,8 +2,11 @@ var width = 960,
     height = 1160;
 
 // extract the definition of the projection
-var projection = d3.geo.mercator()
-    .scale(500)
+var projection = d3.geo.albers()
+    .center([0, 55.4]) // set center
+    .rotate([4.4, 0]) // rotate lat and lon
+    .parallels([50, 60])
+    .scale(1200 * 5)
     .translate([width / 2, height / 2]);
 
 // path generator
@@ -15,9 +18,10 @@ var svg = d3.select("body").append("svg")
     .attr("height", height);
 
 d3.json("uk.json", function(error, uk) {
-  // path element
-  svg.append("path")
-      // have to convert back to geoJSON for display. below () does that.
-      .datum(topojson.feature(uk, uk.objects.subunits))
+  // style polygons, add borders
+  svg.selectAll(".subunit")
+      .data(topojson.feature(uk, uk.objects.subunits).features)
+    .enter().append("path") // data join
+      .attr("class", function(d) { return "subunit " + d.id; })
       .attr("d", path);
 });
