@@ -24,4 +24,18 @@ d3.json("uk.json", function(error, uk) {
     .enter().append("path") // data join
       .attr("class", function(d) { return "subunit " + d.id; })
       .attr("d", path);
+
+  svg.append("path")
+      .datum(topojson.mesh(uk, uk.objects.subunits, function(a, b) {
+        return a !== b && a.id !== "IRL"; 
+      }))
+      .attr("d", path)
+      .attr("class", "subunit-boundary");
+
+  svg.append("path")
+      .datum(topojson.mesh(uk, uk.objects.subunits, function(a, b) {
+        return a === b && a.id === "IRL"; 
+      }))
+      .attr("d", path)
+      .attr("class", "subunit-boundary IRL");
 });
