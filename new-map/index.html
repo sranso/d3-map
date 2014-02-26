@@ -1,0 +1,15 @@
+<!-- ogr2ogr -f GeoJSON countries.json ne_110m_admin_0_countries.shp -->
+<!-- topojson --id-property SU_A3 -p name=NAME -p name -o extra.json countries.json -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Map</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+</head>
+<body>
+
+  <script src="newmap.js" type="text/javascript"></script>
+</body>
+</html>

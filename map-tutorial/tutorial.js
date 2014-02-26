@@ -23,10 +23,10 @@ d3.json("uk.json", function(error, uk) {
       .attr("class", function(d) { return "subunit " + d.id; })
       .attr("d", path)
       .on("mouseover", function() {
-        d3.select(this).attr("opacity", "0.5");  
+        d3.select(this).attr("opacity", "1");  
       })
       .on("mouseout", function() {
-        d3.select(this).attr("opacity", "1");
+        d3.select(this).attr("opacity", "0.8");
       });
 
   // make borders
@@ -40,21 +40,15 @@ d3.json("uk.json", function(error, uk) {
       .attr("d", path)
       .attr("class", "subunit-boundary IRL");
 
-  // add countries' names
-  // svg.selectAll(".subunit-label")
-  //     .data(subunits.features)
-  //   .enter().append("text")
-  //     .attr("class", function(d) { return "subunit-label " + d.id; })
-  //     .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
-  //     .attr("dy", ".35em")
-  //     .text(function(d) { return d.properties.name; });
-
   // add small circle for each city
   svg.selectAll(".place")
       .data(places.features)
       .enter().append("path")
       .attr("d", path)
+      .attr("class", "marker")
       .on("mouseover", function(d) {
+        // attempting to make the country remain opacity 1 when mouse on place-label
+        // d3.select(this).select(".subunit").attr("opacity", "1");
         svg.append("text")
             .attr("class", "place-label")
             .attr("transform", function() { return "translate(" + projection(d.geometry.coordinates) + ")"; })
@@ -64,6 +58,7 @@ d3.json("uk.json", function(error, uk) {
             .text(function() { return d.properties.name; });
       })
       .on("mouseout", function(d) {
+        // d3.select(this).select(".subunit").attr("opacity", "0.8");
         d3.select("text").remove();
       });
 
