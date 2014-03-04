@@ -5,3 +5,9 @@
 svg {
   margin: 0 auto;
 }
+body {
+  background-color: rgb(28,107,160);
+}
+.land {
+  fill: green;
+}
