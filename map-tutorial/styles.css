@@ -33,3 +33,7 @@ text {
   font-weight: 300;
   text-anchor: middle;
 }
+
+body {
+  /*background-color: rgba(28,107,160,0.5);*/
+}

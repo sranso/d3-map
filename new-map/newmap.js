@@ -7,9 +7,21 @@ var svg = d3.select(".container").append("svg")
 
 var projection;
 
+var graticule = d3.geo.graticule();
+
 d3.json("countries.json", function(error, countries) {
   projection = d3.geo.orthographic().clipAngle(90).translate([width / 2, height / 2]),
   path = d3.geo.path().projection(projection);
+
+  svg.append("defs").append("path")
+    .datum({type: "Sphere"})
+    .attr("id", "sphere")
+    .attr("d", path);
+
+  svg.append("path")
+    .datum(graticule)
+    .attr("class", "graticule")
+    .attr("d", path);
 
   svg.selectAll(".country")
       .data(topojson.feature(countries, countries.objects.subunits).features)
@@ -21,7 +33,7 @@ d3.json("countries.json", function(error, countries) {
 
   svg.call(drag);
 
-    // albers has to be calibrated 
+  // albers has to be calibrated 
 
   // svg.append("path")
   //    .datum(topojson.feature(countries, countries.objects.subunits))

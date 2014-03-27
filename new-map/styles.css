@@ -6,8 +6,20 @@ svg {
   margin: 0 auto;
 }
 body {
-  background-color: rgb(28,107,160);
+  /*background-color: rgb(28,107,160);*/
 }
 .land {
   fill: green;
+}
+#sphere {
+  fill: blue;
+}
+.graticule {
+  fill: none;
+  stroke: #777;
+  stroke-width: .5px;
+  stroke-opacity: .5;
+}
+path#globe {
+  fill: lightskyblue;
 }
